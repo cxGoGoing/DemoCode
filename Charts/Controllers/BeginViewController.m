@@ -1,24 +1,28 @@
 //
-//  HomeViewController.m
+//  BeginViewController.m
 //  Charts
 //
-//  Created by chengxun on 16/5/5.
+//  Created by chengxun on 16/5/23.
 //  Copyright © 2016年 chengxun. All rights reserved.
 //
 
+#import "BeginViewController.h"
 #import "HomeViewController.h"
-
-@interface HomeViewController ()
+@interface BeginViewController ()
 
 @end
 
-@implementation HomeViewController
+@implementation BeginViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-    DDLogInfo(@"12123123");
+    self.view.backgroundColor = [UIColor redColor];
     // Do any additional setup after loading the view.
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    HomeViewController * homeVc = [[HomeViewController alloc]init];
+    [self.navigationController pushViewController:homeVc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
