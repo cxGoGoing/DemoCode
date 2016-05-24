@@ -33,6 +33,11 @@
 - (void)setUpUI{
     [self.backImageView autoSetDimensionsToSize:CGSizeMake(200, 200)];
     [self.backImageView autoCenterInSuperview];
+
+    CAReplicatorLayer * repl = [CAReplicatorLayer layer];
+    repl.frame = self.backImageView.frame;
+    [self.backImageView.layer addSublayer:repl];
+
     CALayer * layer = [CALayer layer];
     layer.anchorPoint = CGPointMake(0.5, 1);
     layer.position = CGPointMake(15, 200);
@@ -45,7 +50,10 @@
     animation.autoreverses = YES;
     animation.duration = 0.5;
     [layer addAnimation:animation forKey:@"scaleAnimation"];
-    [self.backImageView.layer addSublayer:layer];
+    [repl addSublayer:layer];
+    repl.instanceCount = 5;
+    repl.instanceTransform = CATransform3DMakeTranslation(40, 0, 0 );
+    repl.instanceDelay = 0.1;
 }
 
 - (void)didReceiveMemoryWarning {
