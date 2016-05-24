@@ -33,8 +33,37 @@
 
 /**  活动指示器  */
 - (void)setUpIndicator{
-    [self.backImageView autoSetDimensionsToSize:CGSizeMake(200, 200)];
-    [self.backImageView autoCenterInSuperview];
+    self.backImageView.frame =CGRectMake(100, 200, 200, 200);
+
+    CAReplicatorLayer * repl = [CAReplicatorLayer layer];
+
+    repl.frame = self.backImageView.bounds;
+    [self.backImageView.layer addSublayer:repl];
+
+    CALayer * layer = [CALayer layer];
+    layer.position = CGPointMake(100, 20);
+    layer.bounds = CGRectMake(0, 0, 10, 10);
+    layer.backgroundColor = [UIColor redColor].CGColor;
+    layer.transform = CATransform3DMakeScale(0, 0, 0);
+    [repl addSublayer:layer];
+
+    CABasicAnimation * ani = [CABasicAnimation animation];
+    ani.keyPath = @"transform.scale";
+    ani.fromValue = @1;
+    ani.toValue = @0;
+    CGFloat kDuration = 1;
+    ani.duration = kDuration;
+    ani.repeatCount = MAXFLOAT;
+    [layer addAnimation:ani forKey:@"scaleAnimiation"];
+
+
+    NSInteger count = 30;
+    CGFloat angle = 2*M_PI/count;
+
+    repl.instanceCount = count;
+    repl.instanceTransform = CATransform3DMakeRotation(angle, 0, 0, 1);
+    repl.instanceDelay = kDuration/count;
+
 }
 
 /**  音量震动条  */
