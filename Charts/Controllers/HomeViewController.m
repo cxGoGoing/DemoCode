@@ -18,7 +18,8 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     DDLogInfo(@"12123123");
-    [self setUpUI];
+    [self setUpIndicator];
+    //[self setUpUI];
     // Do any additional setup after loading the view.
 }
 - (UIImageView*)backImageView{
@@ -30,6 +31,13 @@
     return _backImageView;
 }
 
+/**  活动指示器  */
+- (void)setUpIndicator{
+    [self.backImageView autoSetDimensionsToSize:CGSizeMake(200, 200)];
+    [self.backImageView autoCenterInSuperview];
+}
+
+/**  音量震动条  */
 - (void)setUpUI{
     [self.backImageView autoSetDimensionsToSize:CGSizeMake(200, 200)];
     [self.backImageView autoCenterInSuperview];
